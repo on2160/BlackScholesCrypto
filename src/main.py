@@ -99,7 +99,7 @@ else:
     strike_price = float(input("Input a strike price for your derivative"))
     current_3_month_bond_rate = 1.66
     current_inflation_rate = 8.2
-    risk_free_rate = (1 + current_3_month_bond_rate) / (1 + current_inflation_rate) - 1
+    risk_free_rate = (1 + current_3_month_bond_rate) / (1 + current_inflation_rate)
 
     BTC_Ticker = yf.Ticker("BTC-USD")
     # choose period of 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max
