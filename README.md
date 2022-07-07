@@ -1,4 +1,4 @@
-# BlackScholesCrypto(still in progress)
+# BlackScholesCrypto
 
 Many cryptocurrency exchanges currently offer cryptocurrency derivatives.
 This program will replicate those services by using the Black Scholes 
