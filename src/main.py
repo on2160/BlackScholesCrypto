@@ -23,7 +23,6 @@ def call_pricing(S, K, r, T, sigma):
 
 
 def put_pricing(S, K, r, T, sigma):
-    print(S, K, r, T, sigma)
     d1 = (np.log(S/K) + (r + sigma**2/2)*T) / (sigma*np.sqrt(T))
     d2 = d1 - sigma* np.sqrt(T)
     return K*np.exp(-r*T)*norm.cdf(-d2) - S*norm.cdf(-d1)
@@ -42,7 +41,6 @@ elif time_period == "short":
     BTC_Ticker = yf.Ticker("BTC-USD")
     # choose period of 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max
     df = BTC_Ticker.history(period="1d")
-    print(df)
 
     counter = 1
     last_price = -1
