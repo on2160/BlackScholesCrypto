@@ -23,20 +23,22 @@ def call_pricing(S, K, r, T, sigma):
 
 
 def put_pricing(S, K, r, T, sigma):
-    d1 = (np.log(S/K) + (r + sigma**2/2)*T) / (sigma*np.sqrt(T))
-    d2 = d1 - sigma* np.sqrt(T)
-    return K*np.exp(-r*T)*norm.cdf(-d2) - S*norm.cdf(-d1)
+    print(S, K, r, T, sigma)
+    d1 = (np.log(S / K) + (r + sigma ** 2 / 2) * T) / (sigma * np.sqrt(T))
+    d2 = d1 - sigma * np.sqrt(T)
+    return K * np.exp(-r * T) * norm.cdf(-d2) - S * norm.cdf(-d1)
 
 
-time_period = input("Short-term or long-term derivatives pricing? (type short/long)")
+time_period = input("Short-term or long-term options pricing? (type short/long)")
 if time_period != "short" and time_period != "long":
     print("Did not enter a valid input")
 elif time_period == "short":
-    time_to_maturity = float(input("Input a time to maturity for your derivative, in minutes"))
-    strike_price = float(input("Input a strike price for your derivative"))
-    current_3_month_bond_rate = 1.66
+    time_to_maturity = float(input("Input a time to maturity for your option, in hours"))
+    time_to_maturity /= (365 * 24)
+    strike_price = float(input("Input a strike price for your option"))
+    current_govt_bond_rate = 9.62
     current_inflation_rate = 8.2
-    risk_free_rate = (1 + current_3_month_bond_rate) / (1 + current_inflation_rate) - 1
+    risk_free_rate = (1 + current_govt_bond_rate) / (1 + current_inflation_rate) - 1
 
     BTC_Ticker = yf.Ticker("BTC-USD")
     # choose period of 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max
@@ -93,6 +95,7 @@ elif time_period == "short":
         recent_prices[len(recent_prices)-1] = last_price
 else:
     time_to_maturity = float(input("Input a time to maturity for your derivative, in days"))
+    time_to_maturity /= 365
     strike_price = float(input("Input a strike price for your derivative"))
     current_3_month_bond_rate = 1.66
     current_inflation_rate = 8.2
